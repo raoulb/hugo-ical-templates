@@ -1,0 +1,16 @@
+{{- /* Date-Time Created
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.8.7.1
+
+    Formal Specification:
+
+       created    = "CREATED" creaparam ":" date-time CRLF
+
+       creaparam  = *(";" other-param)
+
+    Hugo Context Parameters:
+
+      - . : A value suitable for the 'dateFormat' function.
+*/ -}}
+
+CREATED:{{- partial "ical/dt_date_time.ics" (dict "dateTime" . "isUTC" true) -}}

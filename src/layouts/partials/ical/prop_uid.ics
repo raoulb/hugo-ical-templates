@@ -1,0 +1,17 @@
+{{- /* Unique Identifier
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.8.4.7
+         https://tools.ietf.org/html/rfc7986#section-5.3
+
+    Formal Specification:
+
+       uid        = "UID" uidparam ":" text CRLF
+
+       uidparam   = *(";" other-param)
+
+    Hugo Context Parameters:
+
+      - . : A unique identifier string.
+*/ -}}
+
+UID:{{- partial "ical/dt_text.ics" . -}}

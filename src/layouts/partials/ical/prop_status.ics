@@ -1,0 +1,36 @@
+{{- /* Status
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.8.1.11
+
+    Formal Specification:
+
+       status          = "STATUS" statparam ":" statvalue CRLF
+
+       statparam       = *(";" other-param)
+
+       statvalue       = (statvalue-event
+                       /  statvalue-todo
+                       /  statvalue-jour)
+
+       statvalue-event = "TENTATIVE"    ;Indicates event is tentative.
+                       / "CONFIRMED"    ;Indicates event is definite.
+                       / "CANCELLED"    ;Indicates event was cancelled.
+       ;Status values for a "VEVENT"
+
+       statvalue-todo  = "NEEDS-ACTION" ;Indicates to-do needs action.
+                       / "COMPLETED"    ;Indicates to-do completed.
+                       / "IN-PROCESS"   ;Indicates to-do in process of.
+                       / "CANCELLED"    ;Indicates to-do was cancelled.
+       ;Status values for "VTODO".
+
+       statvalue-jour  = "DRAFT"        ;Indicates journal is draft.
+                       / "FINAL"        ;Indicates journal is final.
+                       / "CANCELLED"    ;Indicates journal is removed.
+      ;Status values for "VJOURNAL".
+
+    Hugo Context Parameters:
+
+      - . : A string containing one of these predefined values.
+*/ -}}
+
+STATUS:{{- . | upper -}}

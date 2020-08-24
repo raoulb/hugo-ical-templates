@@ -1,0 +1,20 @@
+{{- /* Classification
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.8.1.3
+
+    Formal Specification:
+
+       class      = "CLASS" classparam ":" classvalue CRLF
+
+       classparam = *(";" other-param)
+
+       classvalue = "PUBLIC" / "PRIVATE" / "CONFIDENTIAL" / iana-token
+                  / x-name
+       ;Default is PUBLIC
+
+    Hugo Context Parameters:
+
+      - . : A string containing one of these predefined values.
+*/ -}}
+
+CLASS:{{- . | default "PUBLIC" | upper -}}

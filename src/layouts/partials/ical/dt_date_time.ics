@@ -1,0 +1,16 @@
+{{- /* Date-Time
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.3.5
+
+    Formal Specification:
+
+       date-time  = date "T" time ;As specified in the DATE and TIME
+                                  ;value definitions
+
+    Hugo Context Parameters:
+
+      - .dateTime : A value suitable for the 'dateFormat' function.
+      - .isUTC    : A flag specifying if time is in UTC.
+*/ -}}
+
+{{- partial "ical/dt_date.ics" .dateTime -}}T{{- partial "ical/dt_time.ics" . -}}

@@ -1,0 +1,16 @@
+{{- /* Date-Time Stamp
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.8.7.2
+
+    Formal Specification:
+
+       dtstamp    = "DTSTAMP" stmparam ":" date-time CRLF
+
+       stmparam   = *(";" other-param)
+
+    Hugo Context Parameters:
+
+      - . : A value suitable for the 'dateFormat' function.
+*/ -}}
+
+DTSTAMP:{{- partial "ical/dt_date_time.ics" (dict "dateTime" . "isUTC" true) -}}

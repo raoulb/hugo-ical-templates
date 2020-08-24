@@ -1,0 +1,65 @@
+{{- /* Time Zone Component
+
+    RFC : https://tools.ietf.org/html/rfc5545#section-3.6.5
+
+    Formal specification:
+
+       timezonec  = "BEGIN" ":" "VTIMEZONE" CRLF
+                    *(
+                    ;
+                    ; 'tzid' is REQUIRED, but MUST NOT occur more
+                    ; than once.
+                    ;
+                    tzid /
+                    ;
+                    ; 'last-mod' and 'tzurl' are OPTIONAL,
+                    ; but MUST NOT occur more than once.
+                    ;
+                    last-mod / tzurl /
+                    ;
+                    ; One of 'standardc' or 'daylightc' MUST occur
+                    ; and each MAY occur more than once.
+                    ;
+                    standardc / daylightc /
+                    ;
+                    ; The following are OPTIONAL,
+                    ; and MAY occur more than once.
+                    ;
+                    x-prop / iana-prop
+                    ;
+                    )
+                    "END" ":" "VTIMEZONE" CRLF
+
+       standardc  = "BEGIN" ":" "STANDARD" CRLF
+                    tzprop
+                    "END" ":" "STANDARD" CRLF
+
+       daylightc  = "BEGIN" ":" "DAYLIGHT" CRLF
+                    tzprop
+                    "END" ":" "DAYLIGHT" CRLF
+
+       tzprop     = *(
+                    ;
+                    ; The following are REQUIRED,
+                    ; but MUST NOT occur more than once.
+                    ;
+                    dtstart / tzoffsetto / tzoffsetfrom /
+                    ;
+                    ; The following is OPTIONAL,
+                    ; but SHOULD NOT occur more than once.
+                    ;
+                    rrule /
+                    ;
+                    ; The following are OPTIONAL,
+                    ; and MAY occur more than once.
+                    ;
+                    comment / rdate / tzname / x-prop / iana-prop
+                    ;
+                    )
+
+    Hugo Context Parameters:
+
+      - None
+*/ -}}
+
+{{/* TODO */}}

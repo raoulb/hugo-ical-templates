@@ -1,0 +1,16 @@
+{{- /* Source
+
+    RFC: https://tools.ietf.org/html/rfc7986#section-5.8
+
+    Formal Specification:
+
+       source       = "SOURCE" sourceparam ":" uri CRLF
+
+       sourceparam = *(";" other-param)
+
+    Hugo Context Parameters:
+
+      - . : An uri value.
+*/ -}}
+
+SOURCE;{{- partial "ical/param_vdt.ics" "URI" -}}:{{- partial "ical/dt_uri.ics" . -}}

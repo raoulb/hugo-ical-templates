@@ -1,0 +1,17 @@
+{{- /* Time Zone Identifier
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.2.19
+
+    Formal Specification:
+
+       tzidparam  = "TZID" "=" [tzidprefix] paramtext
+
+       tzidprefix = "/"
+
+    Hugo Context Parameters:
+
+      - . : A string identifying a time zone.
+            For example 'America/New_York'.
+*/ -}}
+
+TZID={{- . -}}

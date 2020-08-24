@@ -1,0 +1,18 @@
+{{- /* Color
+
+    RFC: https://tools.ietf.org/html/rfc7986#section-5.9
+
+    Formal Specification:
+
+       color          = "COLOR" colorparam ":" text CRLF
+                         ; Value is CSS3 color name
+
+       colorparam     = *(";" other-param)
+
+    Hugo Context Parameters:
+
+      - . : A string containing a valid CSS3 color name.
+            See also: https://www.w3.org/TR/2011/REC-css3-color-20110607/
+*/ -}}
+
+COLOR:{{- partial "ical/dt_text.ics" . -}}

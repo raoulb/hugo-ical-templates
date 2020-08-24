@@ -1,0 +1,16 @@
+{{- /* Helper for 'prop_date_time_start.ics' and 'prop_date_time_end.ics' */ -}}
+
+{{- if .justDate -}}
+  {{- partial "ical/param_vdt.ics" "DATE" -}}
+  :{{- partial "ical/dt_date.ics" .dateTime -}}
+{{- else -}}
+  {{- partial "ical/param_vdt.ics" "DATE-TIME" -}}
+  {{- if .isUTC -}}
+    :{{- partial "ical/dt_date_time.ics" (dict "dateTime" .dateTime "isUTC" true) -}}
+  {{- else -}}
+    {{- with .timeZoneID -}}
+      ;{{- partial "ical/param_tzid.ics" . -}}
+    {{- end -}}
+    :{{- partial "ical/dt_date_time.ics" (dict "dateTime" .dateTime "isUTC" false) -}}
+  {{- end -}}
+{{- end -}}

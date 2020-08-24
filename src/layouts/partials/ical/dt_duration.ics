@@ -1,0 +1,22 @@
+{{- /* Duration
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.3.6
+
+    Formal Specification:
+
+       dur-value  = (["+"] / "-") "P" (dur-date / dur-time / dur-week)
+
+       dur-date   = dur-day [dur-time]
+       dur-time   = "T" (dur-hour / dur-minute / dur-second)
+       dur-week   = 1*DIGIT "W"
+       dur-hour   = 1*DIGIT "H" [dur-minute]
+       dur-minute = 1*DIGIT "M" [dur-second]
+       dur-second = 1*DIGIT "S"
+       dur-day    = 1*DIGIT "D"
+
+    Hugo Context Parameters:
+
+      - . : A string value fitting the formal scheme.
+*/ -}}
+
+{{- . -}}

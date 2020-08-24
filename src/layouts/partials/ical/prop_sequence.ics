@@ -1,0 +1,17 @@
+{{- /* Sequence Number
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.8.7.4
+
+    Formal Specification:
+
+       seq = "SEQUENCE" seqparam ":" integer CRLF
+       ; Default is "0"
+
+       seqparam   = *(";" other-param)
+
+    Hugo Context Parameters:
+
+      - . : An integral value.
+*/ -}}
+
+SEQUENCE:{{- partial "ical/dt_integer.ics" (. | default 0) -}}

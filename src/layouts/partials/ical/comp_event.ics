@@ -1,0 +1,156 @@
+{{- /* Event Component
+
+    RFC : https://tools.ietf.org/html/rfc5545#section-3.6.1
+
+    Formal specification:
+
+       eventc     = "BEGIN" ":" "VEVENT" CRLF
+                    eventprop *alarmc
+                    "END" ":" "VEVENT" CRLF
+
+       eventprop  = *(
+                  ;
+                  ; The following are REQUIRED,
+                  ; but MUST NOT occur more than once.
+                  ;
+                  dtstamp / uid /
+                  ;
+                  ; The following is REQUIRED if the component
+                  ; appears in an iCalendar object that doesn't
+                  ; specify the "METHOD" property; otherwise, it
+                  ; is OPTIONAL; in any case, it MUST NOT occur
+                  ; more than once.
+                  ;
+                  dtstart /
+                  ;
+                  ; The following are OPTIONAL,
+                  ; but MUST NOT occur more than once.
+                  ;
+                  class / created / description / geo /
+                  last-mod / location / organizer / priority /
+                  seq / status / summary / transp /
+                  url / recurid /
+                  ;
+                  ; The following is OPTIONAL,
+                  ; but SHOULD NOT occur more than once.
+                  ;
+                  rrule /
+                  ;
+                  ; Either 'dtend' or 'duration' MAY appear in
+                  ; a 'eventprop', but 'dtend' and 'duration'
+                  ; MUST NOT occur in the same 'eventprop'.
+                  ;
+                  dtend / duration /
+                  ;
+                  ; The following are OPTIONAL,
+                  ; and MAY occur more than once.
+                  ;
+                  attach / attendee / categories / comment /
+                  contact / exdate / rstatus / related /
+                  resources / rdate / x-prop / iana-prop
+                  ;
+                  )
+
+       eventprop =/ *(
+                  ;
+                  ; The following are OPTIONAL,
+                  ; but MUST NOT occur more than once.
+                  ;
+                  color /
+                  ;
+                  ; The following are OPTIONAL,
+                  ; and MAY occur more than once.
+                  ;
+                  conference / image
+                  ;
+                  )
+
+    Hugo Context Parameters:
+
+      - .description     : A (long) description of the event.
+          .text            : The main description text.
+          .lang            : A string representing a valid language tag.
+          .alt             : An uri value pointing to an alternative content representation.
+      - .summary         : A (short) summary of the event.
+          .text            : A text string containing a summary.
+          .lang            : A string representing a valid language tag.
+          .alt             : An uri value pointing to an alternative content representation.
+      - .comment         : A text comment about the event.
+          .text            : The main comment text.
+          .lang            : A string representing a valid language tag.
+          .alt             : An uri value pointing to an alternative content representation.
+      - .eventStart      : The date and time this event begins.
+          .dateTime        : A value suitable for the 'dateFormat' function.
+          .timeZoneID      : Time zone identifier if time is not in UTC.
+          .isUTC           : A flag specifying if time is in UTC.
+      - .eventEnd        : The date and time this event ends.
+          .dateTime        : A value suitable for the 'dateFormat' function.
+          .timeZoneID      : Time zone identifier if time is not in UTC.
+          .isUTC           : A flag specifying if time is in UTC.
+      - .allDay          : A flag marking the event as full day event. (default false).
+      - .location        : The event location.
+          .text            : A text describing the location.
+          .lang            : A string representing a valid language tag.
+          .alt             : An uri value pointing to an alternative content representation.
+      - .geo             : Geographic coordinates of the event location.
+          .lat             : A float value containing the latitude component.
+          .long            : A float value containing the longitude component.
+      - .url             : An url value pointing to more information.
+      - .image           : An image representing the event.
+          .uri             : An uri value pointing to an image file.
+          .mediaType       : A string representing a MIME type.
+      - .contact         : Contact information of the event organizer.
+          .text            : A text string providing some kind of contact information.
+          .lang            : A string representing a valid language tag.
+          .alt             : An uri value pointing to an alternative content representation.
+      - .color           : A string containing a valid CSS3 color name.
+      - .status          : One of the strings "TENTATIVE" or "CONFIRMED" or "CANCELLED".
+      - .classification  : The classification of this event. (default: "PUBLIC")
+      - .uid             : The unique id of this calendar component.
+      - .timestamp       : A time value (in UTC) suitable for the 'dateFormat' function.
+      - .created         : Time (in UTC) this calendar component was created.
+      - .lastmod         : Time (in UTC) this calendar component was last modified.
+      - .sequence        : A sequence number increasing with each significant change the component.
+      - .organizer       : Organizer of this calendar component (but *not necessarily* of the event itself).
+          .organizer       : A text string.
+          .commonName      : A text string.
+          .email           : A text string containing an email address.
+          .directory       : An uri pointing to a directory entry.
+          .lang            : A string representing a valid language tag.
+*/ -}}
+
+BEGIN:VEVENT
+
+{{ partial "ical/prop_date_time_stamp.ics" .timestamp }}
+{{ partial "ical/prop_uid.ics" .uid }}
+{{ with .eventStart }}{{ partial "ical/prop_date_time_start.ics" (merge . (dict "justDate" $.allDay)) }}{{ end }}
+{{ partial "ical/prop_classification.ics" .classification }}
+{{ with .created }}{{ partial "ical/prop_date_time_created.ics" . }}{{ end }}
+{{ with .description }}{{ partial "ical/prop_description.ics" . }}{{ end }}
+{{ with .geo }}{{ partial "ical/prop_geographic_position.ics" . }}{{ end }}
+{{ with .lastmod }}{{ partial "ical/prop_last_modified.ics" . }}{{ end }}
+{{ with .location }}{{ partial "ical/prop_location.ics" . }}{{ end }}
+{{ with .organizer }}{{ partial "ical/prop_organizer.ics" . }}{{ end }}
+{{/* priority */ -}}
+{{ with .sequence }}{{ partial "ical/prop_sequence.ics" . }}{{ end }}
+{{ with .status }}{{ partial "ical/prop_status.ics" . }}{{ end }}
+{{ with .summary }}{{ partial "ical/prop_summary.ics" . }}{{ end }}
+{{ partial "ical/prop_time_transparency.ics" }}
+{{ with .url }}{{ partial "ical/prop_url.ics" . }}{{ end }}
+{{/* recurid */ -}}
+{{ with .eventEnd }}{{ partial "ical/prop_date_time_end.ics" (merge . (dict "justDate" $.allDay)) }}{{ end }}
+{{/* duration */ -}}
+{{/* attach */ -}}
+{{/* attendee */ -}}
+{{/* categories */ -}}
+{{ with .comment }}{{ partial "ical/prop_comment.ics" . }}{{ end }}
+{{ with .contact }}{{ partial "ical/prop_contact.ics" . }}{{ end }}
+{{/* exdate */ -}}
+{{/* rstatus */ -}}
+{{/* related */ -}}
+{{/* resources */ -}}
+{{ with .color }}{{ partial "ical/prop_color.ics" . }}{{ end }}
+{{/* conference */ -}}
+{{ with .image }}{{ partial "ical/prop_image.ics" . }}{{ end }}
+
+END:VEVENT

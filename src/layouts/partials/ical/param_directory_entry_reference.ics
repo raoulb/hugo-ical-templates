@@ -1,0 +1,16 @@
+{{- /* Directory Entry Reference
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.2.6
+
+    Formal Specification:
+
+       dirparam   = "DIR" "=" DQUOTE uri DQUOTE
+
+    Hugo Context Parameters:
+
+      - . : An uri value.
+*/ -}}
+
+DIR="{{- partial "ical/dt_uri.ics" . -}}"
+
+{{- /**/ -}}

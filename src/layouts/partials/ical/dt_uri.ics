@@ -1,0 +1,14 @@
+{{- /* URI
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.3.13
+
+    Formal Specification:
+
+       uri = <As defined in Section 3 of [RFC3986]>
+
+    Hugo Context Parameters:
+
+      - . : An uri value.
+*/ -}}
+
+{{- . -}}

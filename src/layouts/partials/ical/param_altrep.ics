@@ -1,0 +1,16 @@
+{{- /* Alternate Text Representation
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.2.1
+
+    Formal Specification:
+
+       altrepparam = "ALTREP" "=" DQUOTE uri DQUOTE
+
+    Hugo Context Parameters:
+
+      - . : An uri value.
+*/ -}}
+
+ALTREP="{{- partial "ical/dt_uri.ics" . -}}"
+
+{{- /**/ -}}

@@ -1,0 +1,16 @@
+{{- /* Common Name
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.2.2
+
+    Formal Specification:
+
+       cnparam    = "CN" "=" param-value
+
+    Hugo Context Parameters:
+
+      - . : A text string.
+*/ -}}
+
+CN="{{- partial "ical/dt_text.ics" . -}}"
+
+{{- /**/ -}}

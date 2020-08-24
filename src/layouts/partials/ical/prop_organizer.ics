@@ -1,0 +1,40 @@
+{{- /* Organizer
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.8.4.3
+         https://tools.ietf.org/html/rfc7986#section-6.2
+
+    Formal Specification:
+
+       organizer  = "ORGANIZER" orgparam ":"
+                    cal-address CRLF
+
+       orgparam   = *(
+                  ;
+                  ; The following are OPTIONAL,
+                  ; but MUST NOT occur more than once.
+                  ;
+                  (";" cnparam) / (";" dirparam) / (";" sentbyparam) /
+                  (";" languageparam) /
+                  ;
+                  ; The following is OPTIONAL,
+                  ; and MAY occur more than once.
+                  ;
+                  (";" other-param)
+                  ;
+                  )
+
+    Hugo Context Parameters:
+
+      - .organizer  : A text string.
+      - .commonName : A text string.
+      - .email      : A text string containing an email address.
+      - .directory  : An uri pointing to a directory entry.
+      - .lang       : A string representing a valid language tag.
+*/ -}}
+
+ORGANIZER
+{{- with .commonName -}};{{- partial "ical/param_common_name.ics" . -}}{{- end -}}
+{{- with .directory -}};{{- partial "ical/param_directory_entry_reference.ics" . -}}{{- end -}}
+{{- with .email -}};{{- partial "ical/param_email.ics" . -}}{{- end -}}
+{{- with .lang -}};{{- partial "ical/param_language.ics" . -}}{{- end -}}
+:{{- partial "ical/dt_calendar_user_address.ics" .organizer -}}

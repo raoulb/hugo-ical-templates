@@ -1,0 +1,17 @@
+{{- /* Uniform Resource Locator
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.8.4.6
+         https://tools.ietf.org/html/rfc7986#section-5.5
+
+    Formal Specification:
+
+       url        = "URL" urlparam ":" uri CRLF
+
+       urlparam   = *(";" other-param)
+
+    Hugo Context Parameters:
+
+      - . : An uri value pointing to more information.
+*/ -}}
+
+URL:{{- partial "ical/dt_uri.ics" . -}}

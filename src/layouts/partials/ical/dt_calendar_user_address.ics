@@ -1,0 +1,14 @@
+{{- /* Calendar User Address
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.3.3
+
+    Formal Specification:
+
+       cal-address        = uri
+
+    Hugo Context Parameters:
+
+      - . : An uri value.
+*/ -}}
+
+{{- partial "ical/dt_uri.ics" . -}}

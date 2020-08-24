@@ -1,0 +1,15 @@
+{{/* Adapt the dict here to fit your data model. See 'cal_props.ics' for available keys. */}}
+
+{{/* Multiline hack from: https://github.com/gohugoio/hugoDocs/issues/764#issuecomment-625711237 */}}
+
+{{ with dict `` `
+  ` "name"         (dict "text" "Example Events" "lang" "de-CH") `` `
+  ` "description"  (dict "text" "Example Events Calendar" "lang" "de-CH") `` `
+  ` "url"          (.OutputFormats.Get "HTML").Permalink `` `
+  ` "color"        "crimson" `` `
+  ` "uid"          .File.UniqueID `` `
+  ` "lastmod"      .Lastmod `` `
+  ` "source"       (.OutputFormats.Get "Calendar").Permalink `` `
+  ` -}}
+  {{ partial "ical/cal_props.ics" . }}
+{{ end }}

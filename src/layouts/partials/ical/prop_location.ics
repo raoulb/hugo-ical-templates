@@ -1,0 +1,33 @@
+{{- /* Location
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.8.1.7
+
+    Formal Specification:
+
+       location   = "LOCATION"  locparam ":" text CRLF
+
+       locparam   = *(
+                  ;
+                  ; The following are OPTIONAL,
+                  ; but MUST NOT occur more than once.
+                  ;
+                  (";" altrepparam) / (";" languageparam) /
+                  ;
+                  ; The following is OPTIONAL,
+                  ; and MAY occur more than once.
+                  ;
+                  (";" other-param)
+                  ;
+                  )
+
+    Hugo Context Parameters:
+
+      - .text : A text describing the location.
+      - .lang : A string representing a valid language tag.
+      - .alt  : An uri value pointing to an alternative content representation.
+*/ -}}
+
+LOCATION
+{{- with .alt -}};{{- partial "ical/param_altrep.ics" . -}}{{- end -}}
+{{- with .lang -}};{{- partial "ical/param_language.ics" . -}}{{- end -}}
+:{{- partial "ical/dt_text.ics" .text -}}

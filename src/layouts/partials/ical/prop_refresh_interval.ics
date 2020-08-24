@@ -1,0 +1,31 @@
+{{- /* Refresh Interval
+
+    RFC: https://tools.ietf.org/html/rfc7986#section-5.7
+
+    Formal Specification:
+
+       refresh      = "REFRESH-INTERVAL" refreshparam
+                        ":" dur-value CRLF
+                        ;consisting of a positive duration of time.
+
+       refreshparam = *(
+                       ;
+                       ; The following is REQUIRED,
+                       ; but MUST NOT occur more than once.
+                       ;
+                       (";" "VALUE" "=" "DURATION") /
+                       ;
+                       ; The following is OPTIONAL,
+                       ; and MAY occur more than once.
+                       ;
+                       (";" other-param)
+                       ;
+                       )
+
+    Hugo Context Parameters:
+
+      - . : A string value fitting the formal scheme for durations.
+            See also 'dt_duration.ics'.
+*/ -}}
+
+REFRESH-INTERVAL;{{- partial "ical/param_vdt.ics" "DURATION" -}}:{{- partial "ical/dt_duration.ics" . -}}

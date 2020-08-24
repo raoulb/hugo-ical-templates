@@ -1,0 +1,33 @@
+{{- /* Contact
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.8.4.2
+
+    Formal Specification:
+
+       contact    = "CONTACT" contparam ":" text CRLF
+
+       contparam  = *(
+                  ;
+                  ; The following are OPTIONAL,
+                  ; but MUST NOT occur more than once.
+                  ;
+                  (";" altrepparam) / (";" languageparam) /
+                  ;
+                  ; The following is OPTIONAL,
+                  ; and MAY occur more than once.
+                  ;
+                  (";" other-param)
+                  ;
+                  )
+
+    Hugo Context Parameters:
+
+      - .text : A text string providing some contact information.
+      - .lang : A string representing a valid language tag.
+      - .alt  : An uri value pointing to an alternative content representation.
+*/ -}}
+
+CONTACT
+{{- with .lang -}};{{- partial "ical/param_language.ics" . -}}{{- end -}}
+{{- with .alt -}};{{- partial "ical/param_altrep.ics" . -}}{{- end -}}
+:{{- partial "ical/dt_text.ics" .text -}}

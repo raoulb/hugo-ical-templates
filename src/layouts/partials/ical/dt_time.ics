@@ -1,0 +1,26 @@
+{{- /* Time
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.3.12
+
+    Formal Specification:
+
+       time         = time-hour time-minute time-second [time-utc]
+
+       time-hour    = 2DIGIT        ;00-23
+       time-minute  = 2DIGIT        ;00-59
+       time-second  = 2DIGIT        ;00-60
+       ;The "60" value is used to account for positive "leap" seconds.
+
+       time-utc     = "Z"
+
+    Hugo Context Parameters:
+
+      - .dateTime : A value suitable for the 'dateFormat' function.
+      - .isUTC    : A flag specifying if time is in UTC.
+*/ -}}
+
+{{- if .isUTC -}}
+{{- dateFormat "150405Z" .dateTime -}}
+{{- else -}}
+{{- dateFormat "150405" .dateTime -}}
+{{- end -}}

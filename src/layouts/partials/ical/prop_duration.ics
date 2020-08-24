@@ -1,0 +1,18 @@
+{{- /* Duration
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.8.2.5
+
+    Formal Specification:
+
+       duration   = "DURATION" durparam ":" dur-value CRLF
+                    ;consisting of a positive duration of time.
+
+       durparam   = *(";" other-param)
+
+    Hugo Context Parameters:
+
+      - . : A string value fitting the formal scheme for durations.
+            See also 'dt_duration.ics'.
+*/ -}}
+
+DURATION:{{- partial "ical/dt_duration.ics" . -}}

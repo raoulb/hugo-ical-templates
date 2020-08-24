@@ -1,0 +1,14 @@
+{{- /* Email
+
+    RFC: https://tools.ietf.org/html/rfc7986#section-6.2
+
+    Formal Specification:
+
+       emailparam = "EMAIL" "=" param-value
+
+    Hugo Context Parameters:
+
+      - . : A text string containing an email address.
+*/ -}}
+
+EMAIL={{- . -}}

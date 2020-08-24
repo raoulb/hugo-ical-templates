@@ -1,0 +1,17 @@
+{{- /* Last Modified
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.8.7.3
+         https://tools.ietf.org/html/rfc7986#section-5.4
+
+    Formal Specification:
+
+       last-mod   = "LAST-MODIFIED" lstparam ":" date-time CRLF
+
+       lstparam   = *(";" other-param)
+
+    Hugo Context Parameters:
+
+      - . : A value suitable for the 'dateFormat' function.
+*/ -}}
+
+LAST-MODIFIED:{{- partial "ical/dt_date_time.ics" (dict "dateTime" . "isUTC" true) -}}

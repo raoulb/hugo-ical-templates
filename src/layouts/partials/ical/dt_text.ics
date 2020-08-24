@@ -1,0 +1,31 @@
+{{- /* Text
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.3.11
+
+    Formal Specification:
+
+       text       = *(TSAFE-CHAR / ":" / DQUOTE / ESCAPED-CHAR)
+          ; Folded according to description above
+
+       ESCAPED-CHAR = ("\\" / "\;" / "\," / "\N" / "\n")
+          ; \\ encodes \, \N or \n encodes newline
+          ; \; encodes ;, \, encodes ,
+
+       TSAFE-CHAR = WSP / %x21 / %x23-2B / %x2D-39 / %x3C-5B /
+                    %x5D-7E / NON-US-ASCII
+          ; Any character except CONTROLs not needed by the current
+          ; character set, DQUOTE, ";", ":", "\", ","
+
+    Hugo Context Parameters:
+
+      - . : A text string.
+*/ -}}
+
+{{- $text := . -}}
+{{- $text := htmlUnescape $text -}}
+{{- $text := trim $text " \n" -}}
+{{- $text := replace $text "\\" "\\\\" -}}
+{{- $text := replace $text ";" "\\;" -}}
+{{- $text := replace $text "," "\\," -}}
+{{- $text := replace $text "\n" "\\n" -}}
+{{- $text -}}

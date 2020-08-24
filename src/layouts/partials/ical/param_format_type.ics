@@ -1,0 +1,16 @@
+{{- /* Format Type
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.2.8
+
+    Formal Specification:
+
+       fmttypeparam = "FMTTYPE" "=" type-name "/" subtype-name
+                      ; Where "type-name" and "subtype-name" are
+                      ; defined in Section 4.2 of [RFC4288].
+
+    Hugo Context Parameters:
+
+      - . : A text string representing a MIME type.
+*/ -}}
+
+FMTTYPE={{- . -}}

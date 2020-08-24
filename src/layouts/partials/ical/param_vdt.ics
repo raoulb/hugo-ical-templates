@@ -1,0 +1,33 @@
+{{- /* Value Data Types
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.2.20
+
+    Formal Specification:
+
+       valuetypeparam = "VALUE" "=" valuetype
+
+       valuetype  = ("BINARY"
+                  / "BOOLEAN"
+                  / "CAL-ADDRESS"
+                  / "DATE"
+                  / "DATE-TIME"
+                  / "DURATION"
+                  / "FLOAT"
+                  / "INTEGER"
+                  / "PERIOD"
+                  / "RECUR"
+                  / "TEXT"
+                  / "TIME"
+                  / "URI"
+                  / "UTC-OFFSET"
+                  / x-name
+                  ; Some experimental iCalendar value type.
+                  / iana-token)
+                  ; Some other IANA-registered iCalendar value type.
+
+    Hugo Context Parameters:
+
+      - . : A string containing one of these predefined values.
+*/ -}}
+
+VALUE={{- . | upper -}}

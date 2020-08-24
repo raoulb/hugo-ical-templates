@@ -1,0 +1,14 @@
+{{- /* Boolean
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.3.2
+
+    Formal Specification:
+
+       boolean    = "TRUE" / "FALSE"
+
+    Hugo Context Parameters:
+
+      - . : A value evaluating to true or false.
+*/ -}}
+
+{{- if . -}}TRUE{{- else -}}FALSE{{- end -}}

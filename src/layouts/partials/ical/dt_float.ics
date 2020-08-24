@@ -1,0 +1,14 @@
+{{- /* Float
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.3.7
+
+    Formal Specification:
+
+       float      = (["+"] / "-") 1*DIGIT ["." 1*DIGIT]
+
+    Hugo Context Parameters:
+
+      - . : A floating point number.
+*/ -}}
+
+{{- . | float -}}

@@ -1,0 +1,55 @@
+{{- /* Image
+
+    RFC: https://tools.ietf.org/html/rfc7986#section-5.10
+
+    Formal Specification:
+
+       image      = "IMAGE" imageparam
+                    (
+                      (
+                        ";" "VALUE" "=" "URI"
+                        ":" uri
+                      ) /
+                      (
+                        ";" "ENCODING" "=" "BASE64"
+                        ";" "VALUE" "=" "BINARY"
+                        ":" binary
+                      )
+                    )
+                    CRLF
+
+       imageparam = *(
+                     ;
+                     ; The following is OPTIONAL for a URI value,
+                     ; RECOMMENDED for a BINARY value,
+                     ; and MUST NOT occur more than once.
+                     ;
+                     (";" fmttypeparam) /
+                     ;
+                     ; The following are OPTIONAL,
+                     ; and MUST NOT occur more than once.
+                     ;
+                     (";" altrepparam) / (";" displayparam) /
+                     ;
+                     ; The following is OPTIONAL,
+                     ; and MAY occur more than once.
+                     ;
+                     (";" other-param)
+                     ;
+                     )
+
+    Hugo Context Parameters:
+
+      - .uri        : An uri value pointing to an image file.
+      - .mediaType  : A string representing a MIME type.
+      - .alt        : An uri value pointing to an alternative content representation.
+      - .displayOpt : A string containing one of the predefined values.
+                      See also 'param_vdt.ics'.
+*/ -}}
+
+IMAGE {{- /**/ -}}
+;{{- partial "ical/param_vdt.ics" "URI" -}}
+{{- with .mediaType -}};{{- partial "ical/param_format_type.ics" . -}}{{- end -}}
+{{- with .alt -}};{{- partial "ical/param_altrep.ics" . -}}{{- end -}}
+;{{- partial "ical/param_display.ics" .displayOpt -}}
+:{{- partial "ical/dt_uri.ics" .uri -}}

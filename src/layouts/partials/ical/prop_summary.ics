@@ -1,0 +1,33 @@
+{{- /* Summary
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.8.1.12
+
+    Formal Specification:
+
+       summary    = "SUMMARY" summparam ":" text CRLF
+
+       summparam  = *(
+                  ;
+                  ; The following are OPTIONAL,
+                  ; but MUST NOT occur more than once.
+                  ;
+                  (";" altrepparam) / (";" languageparam) /
+                  ;
+                  ; The following is OPTIONAL,
+                  ; and MAY occur more than once.
+                  ;
+                  (";" other-param)
+                  ;
+                  )
+
+    Hugo Context Parameters:
+
+      - .text : A text string containing a summary.
+      - .lang : A string representing a valid language tag.
+      - .alt  : An uri value pointing to an alternative content representation.
+*/ -}}
+
+SUMMARY
+{{- with .alt -}};{{- partial "ical/param_altrep.ics" . -}}{{- end -}}
+{{- with .lang -}};{{- partial "ical/param_language.ics" . -}}{{- end -}}
+:{{- partial "ical/dt_text.ics" .text -}}

@@ -1,0 +1,28 @@
+{{- /* Display
+
+    RFC: https://tools.ietf.org/html/rfc7986#section-6.1
+
+    Formal Specification:
+
+       displayparam = "DISPLAY" "=" displayval *("," displayval)
+
+       displayval =  ("BADGE" /     ; image inline with the title of the
+                                    ; event
+                      "GRAPHIC" /   ; a full image replacement for the event
+                                    ; itself
+                      "FULLSIZE" /  ; an image that is used to enhance the
+                                    ; event
+                      "THUMBNAIL" / ; a smaller variant of "FULLSIZE" to be
+                                    ; used when space for the image is
+                                    ; constrained
+                      x-name /      ; Experimental type
+                      iana-token)   ; Other IANA-registered type
+                                    ;
+                                    ; Default is BADGE
+
+    Hugo Context Parameters:
+
+      - . : A text string containing one of these predefined values.
+*/ -}}
+
+DISPLAY={{- . | default "BADGE" | upper -}}

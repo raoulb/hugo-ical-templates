@@ -1,0 +1,35 @@
+{{- /* Date-Time End
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.8.2.2
+
+    Formal Specification:
+
+       dtend      = "DTEND" dtendparam ":" dtendval CRLF
+
+       dtendparam = *(
+                  ;
+                  ; The following are OPTIONAL,
+                  ; but MUST NOT occur more than once.
+                  ;
+                  (";" "VALUE" "=" ("DATE-TIME" / "DATE")) /
+                  (";" tzidparam) /
+                  ;
+                  ; The following is OPTIONAL,
+                  ; and MAY occur more than once.
+                  ;
+                  (";" other-param)
+                  ;
+                  )
+
+       dtendval   = date-time / date
+       ;Value MUST match value type
+
+    Hugo Context Parameters:
+
+      - .dateTime   : A value suitable for the 'dateFormat' function.
+      - .justDate   : Include just the date without the time part.
+      - .timeZoneID : Time zone identifier if time is not in UTC.
+      - .isUTC      : A flag specifying if time is in UTC.
+*/ -}}
+
+DTEND;{{- partial "ical/helper_date_time.ics" . -}}

@@ -1,0 +1,11 @@
+BEGIN:VCALENDAR
+
+{{ partial "events/header.ics" . }}
+
+{{ partial "events/timezone.ics" . }}
+
+{{ range .Pages }}
+{{ partial "events/event.ics" . }}
+{{ end }}
+
+END:VCALENDAR

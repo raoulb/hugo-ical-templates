@@ -1,0 +1,17 @@
+{{- /* Language
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.2.10
+
+    Formal Specification:
+
+       languageparam = "LANGUAGE" "=" language
+
+       language = Language-Tag
+                  ; As defined in [RFC5646].
+
+    Hugo Context Parameters:
+
+      - . : A string representing a valid language tag.
+*/ -}}
+
+LANGUAGE={{- . -}}

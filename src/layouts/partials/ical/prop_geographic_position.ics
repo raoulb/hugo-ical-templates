@@ -1,0 +1,20 @@
+{{- /* Geographic Position
+
+    RFC: https://tools.ietf.org/html/rfc5545#section-3.8.1.6
+
+    Formal Specification:
+
+       geo        = "GEO" geoparam ":" geovalue CRLF
+
+       geoparam   = *(";" other-param)
+
+       geovalue   = float ";" float
+       ;Latitude and Longitude components
+
+    Hugo Context Parameters:
+
+      - .lat  : A float value containing the latitude component.
+      - .long : A float value containing the longitude component.
+*/ -}}
+
+GEO:{{- partial "ical/dt_float.ics" .lat -}};{{- partial "ical/dt_float.ics" .long -}}
