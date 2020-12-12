@@ -12,7 +12,7 @@
     Hugo Context Parameters:
 
       - . : A string containing a valid CSS3 color name.
-            See also: https://www.w3.org/TR/2011/REC-css3-color-20110607/
+            See also: https://www.w3.org/TR/css-color-3/
 */ -}}
 
 COLOR:{{- partial "ical/dt_text.ics" . -}}
